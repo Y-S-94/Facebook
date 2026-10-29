@@ -1,0 +1,256 @@
+I want to create a Bento-style "link-in-bio" page with OpenBento.
+
+## My information
+- Name/Username: Yousef Z. A. Shaheen
+- Bio: عقل استراتيجي وقلب مبدع. Yousef Z. A. Shaheen مطوّر Visionary Engineer يرى الفكرة قبل أن تُكتب، ويحوّلها إلى World-Class Digital Product بلمسة احترافية وفخامة هادئة.
+- Social networks:
+  • https://www.facebook.com/share/19u4QUKFTL/
+- Desired visual style: Professional
+
+## Your task
+
+Generate a valid JSON to configure my Bento page. The JSON must follow EXACTLY this format:
+
+```json
+{
+  "name": "Bento Name",
+  "profile": {
+    "name": "My Name",
+    "bio": "My bio in 1-2 lines",
+    "avatarUrl": "",
+    "theme": "light",
+    "primaryColor": "blue",
+    "showBranding": true,
+    "showSocialInHeader": true,
+    "showFollowerCount": true,
+    "backgroundColor": "#f5f5f5",
+    "socialAccounts": [
+      { "platform": "instagram", "handle": "myhandle", "followerCount": 15000 },
+      { "platform": "youtube", "handle": "mychannel", "followerCount": 50000 },
+      { "platform": "github", "handle": "myusername" }
+    ]
+  },
+  "blocks": [
+    {
+      "id": "block_1",
+      "type": "BLOCK_TYPE",
+      "title": "Title",
+      "subtext": "Subtitle",
+      "content": "URL or text",
+      "colSpan": 3,
+      "rowSpan": 3,
+      "gridColumn": 1,
+      "gridRow": 1,
+      "color": "bg-gray-900",
+      "textColor": "text-white"
+    }
+  ]
+}
+```
+
+---
+
+## PROFILE OPTIONS (displayed in header, under avatar)
+
+### Social accounts under avatar
+Use `socialAccounts` array to display social icons with follower counts under the avatar:
+- `platform`: one of the supported platforms (see list below)
+- `handle`: username without @ (e.g., "johndoe" not "@johndoe")
+- `followerCount`: optional number (e.g., 15000 displays as "15k", 1500000 as "1.5M")
+
+### Header display options
+- `showSocialInHeader`: true = show social icons row under name/bio
+- `showFollowerCount`: true = show follower count next to each social icon
+
+### Theme & background
+- `theme`: "light" or "dark"
+- `backgroundColor`: CSS color (hex like "#f5f5f5", or named color)
+- `primaryColor`: accent color name (blue, violet, pink, amber, emerald, etc.)
+
+---
+
+## BLOCK TYPES (displayed in the grid)
+
+### LINK - Clickable link block
+```json
+{ "type": "LINK", "title": "My Website", "subtext": "Visit my portfolio", "content": "https://example.com", "colSpan": 3, "rowSpan": 3 }
+```
+
+### TEXT - Text/note block
+```json
+{ "type": "TEXT", "title": "Hello!", "content": "Welcome to my page. I'm a developer passionate about open source.", "colSpan": 3, "rowSpan": 3 }
+```
+
+### SOCIAL - Large social block with branding
+```json
+{ "type": "SOCIAL", "title": "Follow me", "subtext": "@myhandle", "socialPlatform": "instagram", "socialHandle": "myhandle", "colSpan": 3, "rowSpan": 3 }
+```
+Note: Use this for featured social networks you want to highlight in the grid.
+
+### SOCIAL_ICON - Small icon-only social block (1x1 cell)
+```json
+{ "type": "SOCIAL_ICON", "socialPlatform": "github", "socialHandle": "myusername", "colSpan": 1, "rowSpan": 1 }
+```
+Note: Perfect for a row of small social icons. Use colSpan: 1, rowSpan: 1.
+
+### MEDIA - Image/GIF block
+```json
+{ "type": "MEDIA", "title": "My photo", "imageUrl": "https://example.com/image.jpg", "colSpan": 3, "rowSpan": 3 }
+```
+
+### MAP - Google Maps location
+```json
+{ "type": "MAP", "title": "Paris, France", "content": "Paris, France", "colSpan": 3, "rowSpan": 3 }
+```
+
+### SPACER - Empty spacing block
+```json
+{ "type": "SPACER", "colSpan": 3, "rowSpan": 1 }
+```
+
+---
+
+## SUPPORTED SOCIAL PLATFORMS
+
+x, instagram, tiktok, youtube, github, gitlab, linkedin, facebook, twitch, dribbble, medium, devto, reddit, pinterest, threads, bluesky, mastodon, substack, patreon, kofi, buymeacoffee, snapchat, discord, telegram, whatsapp, spotify, website, custom
+
+---
+
+## GRID SYSTEM
+
+- Grid is 9 columns wide (gridColumn: 1-9)
+- Rows start at 1 and extend as needed (gridRow: 1, 2, 3...)
+- colSpan: block width (1-9 cells)
+- rowSpan: block height (1-50 cells)
+- Common sizes: 3x3 (standard), 6x3 (wide), 3x6 (tall), 9x3 (full width), 1x1 (icon)
+- BLOCKS MUST NOT OVERLAP!
+
+---
+
+## VISUAL STYLE GUIDE
+
+**The user selected: Professional**
+
+Apply these style guidelines:
+
+
+
+
+
+### Professional Style
+- Theme: "light"
+- Corporate, serious, trustworthy
+- Primary colors: blue, slate, gray
+- Backgrounds: bg-blue-500, bg-slate-800, bg-white
+- Clean lines, no playful elements
+- Conservative color choices
+
+
+---
+
+## COLORS (Tailwind classes)
+
+### Backgrounds
+bg-gray-900, bg-gray-800, bg-slate-800, bg-white, bg-gray-100
+bg-violet-500, bg-purple-500, bg-indigo-500, bg-blue-500, bg-cyan-500
+bg-emerald-500, bg-teal-500, bg-green-500
+bg-pink-500, bg-rose-500, bg-red-500
+bg-amber-100, bg-amber-500, bg-orange-500, bg-yellow-500
+
+### Custom gradients (use customBackground instead of color)
+"customBackground": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+
+### Text colors
+text-white, text-black, text-gray-900, text-gray-100, text-gray-700
+
+---
+
+## IMAGES & MEDIA
+
+You can include images in the Bento:
+
+### Avatar image (profile.avatarUrl)
+- Search for the user's profile picture on their social networks
+- Or suggest a placeholder: "" (user can add later)
+
+### MEDIA blocks (imageUrl)
+- Search for relevant images the user might want to showcase
+- Look for: profile photos, portfolio images, brand logos
+- Use direct image URLs (must end in .jpg, .png, .gif, .webp or be a valid image URL)
+- Example sources: user's website, social media posts, portfolio
+
+### Background image (profile.backgroundImage)
+- Optional: suggest a background pattern or image
+- Can be a subtle texture or gradient image
+
+**If you find relevant images during your search, include them! If not, leave imageUrl/avatarUrl empty.**
+
+---
+
+## IMPORTANT RULES
+
+1. Place social networks in TWO ways:
+   - In `profile.socialAccounts` array: shows icons with follower counts UNDER the avatar
+   - As SOCIAL or SOCIAL_ICON blocks: shows them IN the grid with custom styling
+
+2. For a complete page, include:
+   - Profile with socialAccounts (for header icons)
+   - A TEXT block for introduction
+   - SOCIAL blocks for featured platforms
+   - LINK blocks for important links
+   - Optionally: MAP, MEDIA blocks
+
+3. Make sure blocks don't overlap (check gridColumn + colSpan doesn't exceed 9)
+
+4. Use followerCount as raw numbers: 15000, 1500000 (app formats them as 15k, 1.5M)
+
+---
+
+## ⚠️ DATA VERIFICATION (CRITICAL)
+
+**BEFORE generating the JSON, you MUST verify the data:**
+
+### If you have internet access:
+1. **Search broadly for the user** - Google their name/username to find all their profiles
+2. **Visit their social profiles** to verify handles and get follower counts
+3. **Look for their profile pictures** - find a good avatar image URL
+4. **Find relevant images** for MEDIA blocks (portfolio, photos, etc.)
+5. **Check their website** for additional links, bio info, and images
+6. **Verify all URLs** are valid and point to real content
+7. Use REAL, VERIFIED data in the JSON
+
+### Expand your search:
+- Search "[username] social media" to find all profiles
+- Search "[username] portfolio" or "[username] website" for images
+- Look at their Twitter/X, Instagram, LinkedIn for profile photos
+- Check if they have a YouTube banner, Twitch panels, etc.
+
+### If you DON'T have internet access:
+1. **ASK the user to confirm** before generating the JSON:
+   - "What is your exact Instagram handle?"
+   - "How many followers do you have on YouTube?"
+   - "Do you have a profile picture URL I can use?"
+   - "Any images you'd like to include in MEDIA blocks?"
+2. **List all uncertain data** and request confirmation
+3. **Don't guess or make up** follower counts, handles, or image URLs
+4. Wait for user confirmation before providing the final JSON
+
+### Data to verify:
+- [ ] Social media handles (exact spelling)
+- [ ] Follower/subscriber counts (approximate is OK, but ask if unsure)
+- [ ] Website URLs (must be valid)
+- [ ] YouTube channel ID (if using YouTube blocks)
+- [ ] Location for MAP blocks
+- [ ] Profile picture / avatar URL
+- [ ] Images for MEDIA blocks (if any)
+
+**DO NOT INVENT DATA. When in doubt, ASK!**
+**DO include images if you find them during your search!**
+
+---
+
+## OUTPUT FORMAT
+
+If all data is verified → Reply ONLY with the JSON, no explanation, directly parseable.
+
+If data needs confirmation → First ask your questions, then provide the JSON after user confirms.
